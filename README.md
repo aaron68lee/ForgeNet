@@ -18,4 +18,4 @@ https://github.com/amzn/convolutional-handwriting-gan
 
 We first decided on datasets build a data loader to clean data into a desired form. In this case, we generated a dictionary that maps image filepath to their corresponding texts. i.e. (a01/a01-00/a01-00-000u-01.png -> "World") 
 
-Then we 
+Then we preprocessed images data so that they can be readily fed into the model. processed_data is in `filtered_data` and is a list of tensor object with shape of image dimension.
