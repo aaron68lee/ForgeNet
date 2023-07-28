@@ -7,10 +7,12 @@ import timeit
 from utils import util, string_utils, error_rates
 from collections import defaultdict
 import random, json
-from datasets.hw_dataset import PADDING_CONSTANT
+#from datasets.hw_dataset import PADDING_CONSTANT
 from model.clear_grad import ClearGrad
 from datasets.text_data import TextData
 from data_loader import getDataLoader
+
+PADDING_CONSTANT = -1
 
 class HWRWithSynthTrainer(BaseTrainer):
     """

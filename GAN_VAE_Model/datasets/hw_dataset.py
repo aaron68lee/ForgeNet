@@ -79,9 +79,9 @@ class HWDataset(Dataset):
         self.lineIndex = []
         for page_idx, name in enumerate(set_list):
             lines,author = parseXML(os.path.join(dirPath,'xmls',name+'.xml'))
-            
+           
             authorLines = len(self.authors[author])
-            self.authors[author] += [(os.path.join(dirPath,'forms',name+'.png'),)+l for l in lines]
+            self.authors[author] += [(os.path.join(dirPath,'forms',name+'.png'),)+l for l in lines] # customize this line dataset path
             self.lineIndex += [(author,i+authorLines) for i in range(len(lines))]
 
         char_set_path = config['char_file']
@@ -117,6 +117,7 @@ class HWDataset(Dataset):
             img = cv2.imread(os.path.join(self.normalized_dir,'{}_{}.png'.format(author,line)),0)
             readNorm=True
         else:
+            print("========= IMAGE PATH ==============: ", author, "\n", line, "\n", img_path)
             img = cv2.imread(img_path,0)[lb[0]:lb[1],lb[2]:lb[3]] #read as grayscale, crop line
             readNorm=False
 

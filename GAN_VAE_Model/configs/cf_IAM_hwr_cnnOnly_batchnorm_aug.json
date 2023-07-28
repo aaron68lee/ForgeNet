@@ -1,6 +1,6 @@
 {
     "name": "IAM_hwr_cnnOnly_batchnorm_aug",
-    "cuda": true,
+    "cuda": false,
     "gpu": 0,
     "save_mode": "state_dict",
     "override": true,
@@ -8,7 +8,7 @@
     "data_loader": {
         "data_set_name": "HWDataset",
 
-        "data_dir": "../data/IAM/",
+        "data_dir": "../Datasets",
         "batch_size": 16,
         "shuffle": true,
         "num_workers": 6,
@@ -43,7 +43,7 @@
     "metrics": [],
     "trainer": {
         "class": "HWWithStyleTrainer",
-        "iterations": 100000,
+        "iterations": 1000,
         "save_dir": "../saved/",
         "val_step": 1000,
         "save_step": 25000,

@@ -1,10 +1,12 @@
 from torch import nn
 import torch
 import torch.nn.functional as F
-from datasets.hw_dataset import PADDING_CONSTANT
+#from datasets.hw_dataset import PADDING_CONSTANT
 from .net_builder import getGroupSize
 from .MUNIT_networks import Conv2dBlock, GenWithSkips,ResBlocks
 from .autoencoder import DecoderNoSkip
+
+PADDING_CONSTANT = -1
 
 class Print(nn.Module):
     def __init__(self):

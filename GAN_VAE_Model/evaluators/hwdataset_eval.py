@@ -10,12 +10,12 @@ from model.hw_with_style import correct_pred
 from collections import defaultdict
 import json
 from utils import util, string_utils, error_rates
-from datasets.hw_dataset import PADDING_CONSTANT
+#from datasets.hw_dataset import PADDING_CONSTANT
 from trainer import *
 
 #THRESH=0.5
 
-
+PADDING_CONSTANT = -1
 
 def getCorners(xyrhw):
     xc=xyrhw[0].item()

@@ -9,10 +9,10 @@ from model.loss import *
 from collections import defaultdict
 import json
 from utils import util, string_utils, error_rates
-from datasets.hw_dataset import PADDING_CONSTANT
+#from datasets.hw_dataset import PADDING_CONSTANT
 
 #THRESH=0.5
-
+PADDING_CONSTANT = -1
 
 def _to_tensor(instance,gpu):
     image = instance['image']

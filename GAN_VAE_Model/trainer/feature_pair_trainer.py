@@ -66,10 +66,10 @@ class FeaturePairTrainer(Trainer):
         ##tic=timeit.default_timer()
         batch_idx = (iteration-1) % len(self.data_loader)
         try:
-            thisInstance = self.data_loader_iter.next()
+            thisInstance = self.data_loader_iter.__next__()
         except StopIteration:
             self.data_loader_iter = iter(self.data_loader)
-            thisInstance = self.data_loader_iter.next()
+            thisInstance = self.data_loader_iter.__next__()
         ##toc=timeit.default_timer()
         ##print('data: '+str(toc-tic))
         

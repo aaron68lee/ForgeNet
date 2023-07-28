@@ -10,7 +10,7 @@ from utils.metainit import metainitRecog
 from data_loader import getDataLoader
 from collections import defaultdict
 import random, json, os
-from datasets.hw_dataset import PADDING_CONSTANT
+#from datasets.hw_dataset import PADDING_CONSTANT
 from model.clear_grad import ClearGrad
 from model.hw_with_style import correct_pred
 from datasets.text_data import TextData
@@ -19,6 +19,7 @@ import cv2
 import torchvision.utils as vutils
 
 STYLE_MAX=15
+PADDING_CONSTANT = -1
 
 class HWWithStyleTrainer(BaseTrainer):
     """
@@ -317,12 +318,12 @@ class HWWithStyleTrainer(BaseTrainer):
                     instance = self.triplet_data_loader_iter.next()
             else:
                 try:
-                    instance = self.data_loader_iter.next()
+                    instance = self.data_loader_iter.__next__()
                 except StopIteration:
                     if 'refresh_data' in dir(self.data_loader.dataset):
                         self.data_loader.dataset.refresh_data(None,None,self.logged)
                     self.data_loader_iter = iter(self.data_loader)
-                    instance = self.data_loader_iter.next()
+                    instance = self.data_loader_iter.__next__()
         ##toc=timeit.default_timer()
         ##print('data: '+str(toc-tic))
 

@@ -7,9 +7,11 @@ import timeit
 from utils import util, string_utils, error_rates
 from collections import defaultdict
 import random, json
-from datasets.hw_dataset import PADDING_CONSTANT
+#from datasets.hw_dataset import PADDING_CONSTANT
 from model.clear_grad import ClearGrad
 from datasets.text_data import TextData
+
+PADDING_CONSTANT = -1
 
 class AutoTrainer(BaseTrainer):
     """
@@ -104,10 +106,10 @@ class AutoTrainer(BaseTrainer):
             instance = self.text_data.getInstance()
         else:
             try:
-                instance = self.data_loader_iter.next()
+                instance = self.data_loader_iter.__next__()
             except StopIteration:
                 self.data_loader_iter = iter(self.data_loader)
-                instance = self.data_loader_iter.next()
+                instance = self.data_loader_iter.__next__()
         ##toc=timeit.default_timer()
         ##print('data: '+str(toc-tic))
         

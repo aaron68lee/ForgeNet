@@ -6,13 +6,15 @@ from torch import nn
 from torch.autograd import Variable
 import torch
 import torch.nn.functional as F
-from datasets.hw_dataset import PADDING_CONSTANT
+#from datasets.hw_dataset import PADDING_CONSTANT
 from .net_builder import getGroupSize
 from .attention import MultiHeadedAttention, PositionalEncoding
 try:
     from itertools import izip as zip
 except ImportError: # will be 3.x series
     pass
+
+PADDING_CONSTANT = -1
 
 ##################################################################################
 # Discriminator
