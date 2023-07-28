@@ -1,22 +1,6 @@
 import torch
 import torch.utils.data
 import numpy as np
-#from datasets.cancer import CancerDataset
-#from datasets.ai2d import AI2D
-#from datasets import forms_detect
-#from datasets.forms_detect import FormsDetect
-#from datasets import forms_box_detect
-#from datasets.forms_box_detect import FormsBoxDetect
-#from datasets import ai2d_box_detect
-#from datasets import forms_graph_pair
-#from datasets import forms_box_pair
-#from datasets.forms_box_pair import FormsBoxPair
-#from datasets.forms_feature_pair import FormsFeaturePair
-#from datasets import forms_feature_pair
-#from datasets.forms_pair import FormsPair
-#from datasets.forms_lf import FormsLF
-#from datasets import random_messages
-#from datasets import random_diffusion
 from datasets import hw_dataset
 from datasets import mmd_hw_dataset
 from datasets import synth_text_dataset
