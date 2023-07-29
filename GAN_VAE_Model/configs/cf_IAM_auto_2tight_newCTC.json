@@ -1,13 +1,13 @@
 {
     "name": "IAM_auto_2tight_newCTC",
-    "cuda": true,
+    "cuda": false,
     "gpu": 0,
     "save_mode": "state_dict",
     "override": true,
     "super_computer": false,
     "data_loader": {
         "data_set_name": "AuthorHWDataset",
-        "data_dir": "../data/IAM/",
+        "data_dir": "../Datasets",
         "batch_size": 28,
         "a_batch_size": 1,
         "shuffle": false,
@@ -18,7 +18,7 @@
     },
     "validation": {
         "shuffle": false,
-        "batch_size": 64
+        "batch_size": 4
     },
     "optimizer_type": "Adam",
     "optimizer": {
@@ -42,12 +42,12 @@
     "metrics": [],
     "trainer": {
         "class": "AutoTrainer",
-        "iterations": 60000,
+        "iterations": 10,
         "save_dir": "saved/",
-        "val_step": 5000,
-        "save_step": 10000,
+        "val_step": 10,
+        "save_step": 10,
         "save_step_minor": 250,
-        "log_step": 250,
+        "log_step": 10,
         "verbosity": 1,
         "monitor": "loss",
         "monitor_mode": "none",

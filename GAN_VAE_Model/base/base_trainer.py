@@ -11,6 +11,8 @@ from utils.util import ensure_dir
 from collections import defaultdict
 from utils.curriculum import Curriculum
 from model import *
+from tqdm import tqdm
+
 #from ..model import PairingGraph
 
 class BaseTrainer:
@@ -205,7 +207,8 @@ class BaseTrainer:
         #for metric in self.metrics:
         #    sumLog['avg_'+metric.__name__]=0
 
-        for self.iteration in range(self.start_iteration, self.iterations + 1):
+        # Wrap the range function with tqdm to add progress bar to the training loop
+        for self.iteration in tqdm(range(self.start_iteration, self.iterations + 1), desc='Training Iterations'): #range(self.start_iteration, self.iterations + 1):
             if not self.logged:
                 print('iteration: {}     '.format(self.iteration), end='\r')
 

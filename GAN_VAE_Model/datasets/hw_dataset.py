@@ -71,21 +71,32 @@ class HWDataset(Dataset):
 
         self.img_height = config['img_height']
 
-        #with open(os.path.join(dirPath,'sets.json')) as f:
-        with open(os.path.join('data','sets.json')) as f:
+        #with open(os.path.join('data','sets.json')) as f:
+        # Get the current directory where script.py is located
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        
+        sets_path = os.path.join(current_dir, '../data','sets.json')
+        #print("AHHH", sets_path)
+        with open(sets_path) as f:
             set_list = json.load(f)[split]
 
         self.authors = defaultdict(list)
         self.lineIndex = []
         for page_idx, name in enumerate(set_list):
-            lines,author = parseXML(os.path.join(dirPath,'xmls',name+'.xml'))
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            if name == 'r03-115': # bad data
+                continue
+            lines,author = parseXML(os.path.join(current_dir, '../data', 'xmls',name+'.xml'))
            
             authorLines = len(self.authors[author])
-            self.authors[author] += [(os.path.join(dirPath,'forms',name+'.png'),)+l for l in lines] # customize this line dataset path
+            self.authors[author] += [(os.path.join(dirPath,'forms',name+'.png'),)+l for l in lines] # edit customize this line dataset path
             self.lineIndex += [(author,i+authorLines) for i in range(len(lines))]
 
         char_set_path = config['char_file']
-        with open(char_set_path) as f:
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        with open(os.path.join(current_dir, '../data', 'xmls',name+'.xml')) as f:
+            #open(+char_set_path) as f:
+            print("HEHE", f) # fucking help
             char_set = json.load(f)
         self.char_to_idx = char_set['char_to_idx']
 
@@ -111,13 +122,14 @@ class HWDataset(Dataset):
 
         author,line = self.lineIndex[idx]
         img_path, lb, gt = self.authors[author][line]
+        #print("------------", self.authors[author])
         if self.add_spaces:
             gt = ' '+gt+' '
         if type(self.augmentation) is str and 'normalization' in  self.augmentation and self.normalized_dir is not None and os.path.exists(os.path.join(self.normalized_dir,'{}_{}.png'.format(author,line))):
             img = cv2.imread(os.path.join(self.normalized_dir,'{}_{}.png'.format(author,line)),0)
             readNorm=True
         else:
-            print("========= IMAGE PATH ==============: ", author, "\n", line, "\n", img_path)
+            #print("========= IMAGE PATH ==============: \n", author, "\n", line, "\n", img_path)
             img = cv2.imread(img_path,0)[lb[0]:lb[1],lb[2]:lb[3]] #read as grayscale, crop line
             readNorm=False
 

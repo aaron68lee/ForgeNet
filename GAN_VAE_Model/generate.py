@@ -590,7 +590,7 @@ def main(resume,saveDir,gpu=None,config=None,addToConfig=None, fromDataset=True,
                 else:
                     path1 = arguments['path1']
                     path2 = arguments['path2']
-                    text_gen = arguments['text_gen'] if 'text_gen' in arguements else arguments['text']
+                    text_gen = arguments['text_gen'] if 'text_gen' in arguments else arguments['text']
                 img_height=64
 
                 image1 = cv2.imread(path1,0)
@@ -894,13 +894,19 @@ if __name__ == '__main__':
     if args.run is not None:
         s = args.run.split(',')
         arguments={}
+        #print("============")
+        #print(s)
         for pair in s:
             ss = pair.split('=')
+            #print(pair)
+            #print(ss)
             arguments[ss[0]]=ss[1]
+        #print("----------------")
     else:
         arguments=None
     if args.gpu is not None:
         with torch.cuda.device(args.gpu):
             main(args.checkpoint, args.savedir, gpu=args.gpu,  config=args.config, addToConfig=addtoconfig, test =args.test,arguments=arguments, style_loc=args.style_loc)
     else:
+        print("R args:", arguments)
         main(args.checkpoint, args.savedir, gpu=args.gpu,  config=args.config, addToConfig=addtoconfig, test =args.test,arguments=arguments, style_loc=args.style_loc)

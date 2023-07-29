@@ -6,9 +6,11 @@
 /filtered_data
 /ascii
 /saved
+/generated
 
 # Other Folders
 
 # misc
 .DS_Store
+count_files.sh
 

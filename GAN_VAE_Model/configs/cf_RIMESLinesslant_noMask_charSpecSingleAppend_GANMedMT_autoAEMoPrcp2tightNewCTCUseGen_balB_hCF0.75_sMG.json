@@ -1,6 +1,6 @@
 {
     "name": "RIMESLinesslant_noMask_charSpecSingleAppend_GANMedMT_autoAEMoPrcp2tightNewCTCUseGen_balB_hCF0.75_sMG",
-    "cuda": true,
+    "cuda": false,
     "gpu": 0,
     "save_mode": "state_dict",
     "override": true,
@@ -8,7 +8,7 @@
     "data_loader": {
         "data_set_name": "AuthorRIMESLinesDataset",
 
-        "data_dir": "../data/RIMES/",
+        "data_dir": "../Datasets",
         "batch_size": 2,
         "a_batch_size": 2,
         "shuffle": true,
@@ -17,7 +17,7 @@
         "augmentation": "affine",
         "img_height": 64,
         "max_width": 1300,
-        "char_file": "../data/RIMES/characterset_lines.json",
+        "char_file": "../data/IAM/lineMixed_sets.json",
         "center_pad": false
     },
     "validation": {
@@ -71,10 +71,10 @@
     "metrics": [],
     "trainer": {
         "class": "HWWithStyleTrainer",
-        "iterations": 175000,
+        "iterations": 10,
         "save_dir": "saved/",
         "val_step": -1,
-        "save_step": 25000,
+        "save_step": 10,
         "save_step_minor": 250,
         "log_step": 250,
         "verbosity": 1,

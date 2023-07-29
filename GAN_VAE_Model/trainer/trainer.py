@@ -2,7 +2,7 @@ import numpy as np
 import torch
 from base import BaseTrainer
 import timeit
-
+from tqdm import tqdm
 
 class Trainer(BaseTrainer):
     """
@@ -33,13 +33,18 @@ class Trainer(BaseTrainer):
         return ret
     def _to_tensor_individual(self, data):
         if type(data)==str:
+            #print("-STRING-")
             return data
         if type(data)==list or type(data)==tuple:
             return [self._to_tensor_individual(d) for d in data]
+            #print("-LIST-")
         if (len(data.size())==1 and data.size(0)==1):
             return data[0]
         if type(data) is np.ndarray:
+            #print("-NDARRAY-")
             data = torch.FloatTensor(data.astype(np.float32))
+
+        #print("DATATYPE:", type(data))
         #elif type(data) is torch.Tensor:
         #    data = data.type(torch.FloatTensor)
         if self.with_cuda:
@@ -76,7 +81,9 @@ class Trainer(BaseTrainer):
         #tic=timeit.default_timer()
         batch_idx = (iteration-1) % len(self.data_loader)
         try:
-            data, target = self._to_tensor(*self.data_loader_iter.__next__())
+            # Wrap the data_loader_iter with tqdm to add progress bar to data loader iterations
+            for data, target in tqdm(self.data_loader_iter, total=len(self.data_loader), desc='Data Loader Iterations'):
+                data, target = self._to_tensor(*self.data_loader_iter.__next__())
         except StopIteration:
             self.data_loader_iter = iter(self.data_loader)
             data, target = self._to_tensor(*self.data_loader_iter.__next__())

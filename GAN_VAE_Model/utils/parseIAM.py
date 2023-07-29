@@ -11,7 +11,7 @@ def unescape(s):
 def getWordAndLineBoundaries(xmlPath):
     lines=[]
     w_lines=[]
-    tree = ET.parse(xmlPath)
+    tree = ET.parse('.' + xmlPath)
     root = tree.getroot()
     writer = root.attrib['writer-id']
     allHs=0

@@ -4,16 +4,16 @@
     "gpu": 0,
     "save_mode": "state_dict",
     "override": true,
-    "super_computer":true,
+    "super_computer":false,
     "data_loader": {
         "data_set_name": "HWDataset",
 
         "data_dir": "../Datasets",
-        "batch_size": 16,
+        "batch_size": 4,
         "shuffle": true,
-        "num_workers": 6,
+        "num_workers": 4,
 
-        "augmentation": true,
+        "augmentation": false,
         "img_height": 64,
         "char_file": "./data/IAM_char_set.json",
         "center_pad": false
@@ -28,7 +28,7 @@
  
     "optimizer_type": "Adam",
     "optimizer": {
-        "lr": 0.001,
+        "lr": 0.005,
         "weight_decay": 0
     },
     "loss": {
@@ -43,10 +43,10 @@
     "metrics": [],
     "trainer": {
         "class": "HWWithStyleTrainer",
-        "iterations": 1000,
+        "iterations": 10,
         "save_dir": "../saved/",
-        "val_step": 1000,
-        "save_step": 25000,
+        "val_step": 10,
+        "save_step": 10,
         "save_step_minor": 250,
         "log_step": 100,
         "verbosity": 1,
