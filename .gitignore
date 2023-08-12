@@ -4,11 +4,13 @@
 /Datasets
 /Weights
 /filtered_data
+/filtered_data/processed_images.pkl
 /ascii
 /saved
 /generated
 
 # Other Folders
+/SimpleHTR-master
 
 # misc
 .DS_Store
